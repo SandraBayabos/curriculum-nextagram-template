@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from flask_login import current_user
+from flask_login import current_user, login_required
 from models.user import User
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
@@ -54,10 +54,13 @@ def index():
 
 
 @users_blueprint.route('/<id>/edit', methods=['GET'])
+# @login_required
 def edit(id):
     user = User.get_by_id(id)
+
     if current_user == user:
-        return render_template('edit_user.html')
+        return render_template('edit_user.html', user=user)
+        # return render_template('edit_user.html')
     else:
         flash('You are not authorized to do this!')
         return redirect(url_for('home'))
@@ -75,12 +78,13 @@ def update(id):
         new_user_name = request.form.get('new_user_name')
         new_email = request.form.get('new_email')
         new_password = request.form.get('new_password')
+        hashed_password = generate_password_hash(new_password)
 
     # use update because using save will execute the validation in users.py
         update_user = User.update(
             username=new_user_name,
             email=new_email,
-            password=new_password
+            password=hashed_password
         ).where(User.id == id)
 
         if not update_user.execute():

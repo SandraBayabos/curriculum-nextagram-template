@@ -31,8 +31,20 @@ def upload_file():
     if file and allowed_file(file.filename):
         file.filename = secure_filename(file.filename)
         output = upload_file_to_s3(file, S3_BUCKET)
-        # return str(output)
-        flash('Successfully uploaded image!')
-        return redirect(url_for('home'))
+
+        update_user_image = User.update(
+            user_profile_image=file.filename
+        ).where(User.id == current_user.id)
+
+        # return str(file.filename)
+
+        if update_user_image.execute():
+
+            flash('Successfully uploaded image!')
+            return redirect(url_for('home'))
+        else:
+            flash(
+                'Unsuccessful upload. Check you are uploading an accepted file extention.')
+            return render_template('images/new.html')
     else:
         return redirect('/')

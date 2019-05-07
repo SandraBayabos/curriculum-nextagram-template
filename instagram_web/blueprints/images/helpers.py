@@ -6,7 +6,7 @@ from config import S3_KEY, S3_SECRET, S3_LOCATION
 from werkzeug import secure_filename
 
 #allowed extensions#
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 
 s3 = boto3.client(

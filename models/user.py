@@ -3,6 +3,7 @@ from flask_login import LoginManager, UserMixin
 import peewee as pw
 import re
 from playhouse.hybrid import hybrid_property
+from config import AWS_LINK
 
 
 class User(BaseModel, UserMixin):
@@ -11,6 +12,12 @@ class User(BaseModel, UserMixin):
     email = pw.CharField(unique=True, null=False)
     password = pw.CharField(null=False)
     user_profile_image = pw.CharField(null=True, default=None)
+
+    # @hybrid_property
+    # def hello(self):
+    #     print("hello")
+
+    # user.hello
 
     def validate(self):
         duplicate_user = User.get_or_none(
@@ -58,7 +65,9 @@ class User(BaseModel, UserMixin):
     def get_id(self):
         return self.id
 
-    # @hybrid_property
-    # def profile_image_url(self):
-    #     # return image url
-    #     return f"https://amazon.com"self.profile_picture
+    @hybrid_property
+    def profile_image_url(self):
+        # return image url
+        return f"{AWS_LINK}/{self.user_profile_image}
+
+    # user.profile_image_url

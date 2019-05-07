@@ -6,6 +6,7 @@ from flask_login import current_user, login_required
 from models.user import User
 from werkzeug import secure_filename
 from config import S3_BUCKET
+from user import hybrid_property
 
 
 images_blueprint = Blueprint('images',
@@ -36,7 +37,9 @@ def upload_file():
             user_profile_image=file.filename
         ).where(User.id == current_user.id)
 
-        # return str(file.filename)
+        # return str(file.filename)#
+
+        #save image to the database#
 
         if update_user_image.execute():
 
@@ -44,7 +47,7 @@ def upload_file():
             return redirect(url_for('home'))
         else:
             flash(
-                'Unsuccessful upload. Check you are uploading an accepted file extention.')
+                'An error occurred. Try again.')
             return render_template('images/new.html')
     else:
         return redirect('/')

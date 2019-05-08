@@ -5,7 +5,7 @@
 
 {% for user in users %}
 <ul>
-<li>{{user.user_profile_image}} {{user.username}}</li>
+<li><img src="{{user.profile_image_url}}" height=250 width=250/> {{user.username}}</li>
 </ul>
 {% endfor %}
 

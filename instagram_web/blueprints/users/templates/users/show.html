@@ -2,6 +2,14 @@
 {% block content %}
 
 <h1>{{user.username}}</h1>
-<p><img src="{{user.profile_image_url}}" height=250 width=250></p>
-
+<img src="{{user.profile_image_url}}" height=250 width=250>
+<br></br>
+<hr>
+<section>
+<div>
+{% for image in user.images %}
+<img src="{{image.users_image_url}}"  height=400 width =400/>
+{% endfor %}
+</div>
+</section>
 {% endblock %}

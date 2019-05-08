@@ -62,8 +62,10 @@ def new():
 @images_blueprint.route('/new_user_image', methods=['POST'])
 def upload_image():
 
+    # to upload to Amazon
+
     if "image" not in request.files:
-        flash('No user_fdkfjdskljile key in request.files')
+        flash('No user_key in request.files')
         return redirect('/')
 
     file = request.files["image"]
@@ -72,12 +74,14 @@ def upload_image():
         file.filename = secure_filename(file.filename)
         output = upload_file_to_s3(file, S3_BUCKET)
 
-        update_image = Image(
+    # to save to Image database
+
+        upload_image = Image(
             image=file.filename,
             user_id=current_user.id
         )
 
-        if update_image.save():
+        if upload_image.save():
             flash('Successfully uploaded a photo!')
             return render_template('images/new.html')
         else:

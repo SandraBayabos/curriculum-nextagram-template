@@ -51,3 +51,13 @@ def upload_file():
             return render_template('images/new.html')
     else:
         return redirect('/')
+
+
+"""
+Hybrid_property used in a class:-
+User.select().where(User.profile_image_url == '....')
+User.select().where(User.location == 'KL')
+
+Hybrid_property used in an instance:-
+user.profile_image_url
+"""

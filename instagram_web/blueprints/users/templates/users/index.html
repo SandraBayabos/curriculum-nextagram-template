@@ -1,0 +1,12 @@
+{% extends '_layout.html' %}
+{% block content %}
+
+<h1>List of Users</h1>
+
+{% for user in users %}
+<ul>
+<li><img src="{{user.profile_image_url}}" height=250 width=250/> {{user.username}}</li>
+</ul>
+{% endfor %}
+
+{% endblock %}

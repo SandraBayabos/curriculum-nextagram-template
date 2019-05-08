@@ -63,5 +63,3 @@ class User(BaseModel, UserMixin):
     def profile_image_url(self):
         # to return image url
         return f"{AWS_LINK}/{self.user_profile_image}"
-
-    # user.profile_image_url

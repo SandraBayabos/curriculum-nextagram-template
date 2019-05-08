@@ -3,10 +3,9 @@ import os
 from app import app
 from flask import Blueprint, Flask, render_template, request, redirect, flash, url_for
 from flask_login import current_user, login_required
-from models.user import User
+from models.user import User, hybrid_property
 from werkzeug import secure_filename
 from config import S3_BUCKET
-from user import hybrid_property
 
 
 images_blueprint = Blueprint('images',

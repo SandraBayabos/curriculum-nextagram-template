@@ -13,12 +13,6 @@ class User(BaseModel, UserMixin):
     password = pw.CharField(null=False)
     user_profile_image = pw.CharField(null=True, default=None)
 
-    # @hybrid_property
-    # def hello(self):
-    #     print("hello")
-
-    # user.hello
-
     def validate(self):
         duplicate_user = User.get_or_none(
             User.username == self.username)
@@ -67,7 +61,7 @@ class User(BaseModel, UserMixin):
 
     @hybrid_property
     def profile_image_url(self):
-        # return image url
-        return f"{AWS_LINK}/{self.user_profile_image}
+        # to return image url
+        return f"{AWS_LINK}/{self.user_profile_image}"
 
     # user.profile_image_url

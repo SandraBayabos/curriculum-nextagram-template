@@ -66,7 +66,7 @@ def upload_image():
 
     if "image" not in request.files:
         flash('No user_key in request.files')
-        return redirect('/')
+        return redirect(url_for('home'))
 
     file = request.files["image"]
 

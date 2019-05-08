@@ -41,16 +41,25 @@ def create():
         flash(f'{user_name} is already taken. Pick another')
         return render_template('new.html', errors=newuser.errors)
 
-
-@users_blueprint.route('/<username>', methods=["GET"])
-def show():
-    pass
+#####PAGE FOR LIST OF USERS#####
 
 
-@users_blueprint.route('/', methods=["GET"])
+@users_blueprint.route('/index', methods=["GET"])
 def index():
-    # return "USERS"
-    pass
+    return render_template('index.html',
+                           users=User.select())
+
+#####USER PROFILE PAGE#####
+
+
+@users_blueprint.route('/show/<username>', methods=["GET"])
+def show(username):
+    user = User.get_or_none(User.username == username)
+    if not user:
+        flash('There is no one with that username. Check spelling.')
+        return redirect(url_for('home'))
+    else:
+        return render_template('show.html', user=user)
 
 
 @users_blueprint.route('/<id>/edit', methods=['GET'])
@@ -59,8 +68,8 @@ def edit(id):
     user = User.get_by_id(id)
 
     if current_user == user:
-        return render_template('edit_user.html', user=user)
-        # return render_template('edit_user.html')
+        return render_template('edit.html', user=user)
+        # return render_template('edit.html')
     else:
         flash('You are not authorized to do this!')
         return redirect(url_for('home'))
@@ -72,7 +81,7 @@ def update(id):
 
     if not current_user == user:
         flash('You are not authorized to do this!')
-        return render_template('edit_user.html', user=user)
+        return render_template('edit.html', user=user)
 
     else:
         new_user_name = request.form.get('new_user_name')
@@ -90,7 +99,7 @@ def update(id):
         if not update_user.execute():
             flash(
                 f'Unable to update, please try again')
-            return render_template('edit_user.html', user=user)
+            return render_template('edit.html', user=user)
 
         flash('Successfully updated')
         return redirect(url_for('home'))

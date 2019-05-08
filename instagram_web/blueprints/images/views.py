@@ -4,6 +4,7 @@ from app import app
 from flask import Blueprint, Flask, render_template, request, redirect, flash, url_for
 from flask_login import current_user, login_required
 from models.user import User, hybrid_property
+from models.image import Image
 from werkzeug import secure_filename
 from config import S3_BUCKET
 
@@ -13,10 +14,10 @@ images_blueprint = Blueprint('images',
                              template_folder='templates')
 
 
-@images_blueprint.route('/new', methods=['GET'])
+@images_blueprint.route('/profile_picture', methods=['GET'])
 @login_required
-def new():
-    return render_template('images/new.html')
+def profile_picture():
+    return render_template('images/profile_picture.html')
 
 
 @images_blueprint.route('/', methods=["POST"])
@@ -32,32 +33,55 @@ def upload_file():
         file.filename = secure_filename(file.filename)
         output = upload_file_to_s3(file, S3_BUCKET)
 
+        #save image to the database#
         update_user_image = User.update(
             user_profile_image=file.filename
         ).where(User.id == current_user.id)
 
         # return str(file.filename)#
 
-        #save image to the database#
-
         if update_user_image.execute():
 
-            flash('Successfully uploaded image!')
+            flash('Successfully changed your profile picture!')
             # return redirect(url_for('home'))
-            return render_template('images/new.html')
+            return render_template('images/profile_picture.html')
         else:
             flash(
                 'An error occurred. Try again.')
-            return render_template('images/new.html')
+            return render_template('images/profile_picture.html')
     else:
         return redirect('/')
 
 
-"""
-Hybrid_property used in a class:-
-User.select().where(User.profile_image_url == '....')
-User.select().where(User.location == 'KL')
+@images_blueprint.route('/new', methods=['GET'])
+@login_required
+def new():
+    return render_template('images/new.html')
 
-Hybrid_property used in an instance:-
-user.profile_image_url
-"""
+
+@images_blueprint.route('/new_user_image', methods=['POST'])
+def upload_image():
+
+    if "image" not in request.files:
+        flash('No user_fdkfjdskljile key in request.files')
+        return redirect('/')
+
+    file = request.files["image"]
+
+    if file and allowed_file(file.filename):
+        file.filename = secure_filename(file.filename)
+        output = upload_file_to_s3(file, S3_BUCKET)
+
+        update_image = Image(
+            image=file.filename,
+            user_id=current_user.id
+        )
+
+        if update_image.save():
+            flash('Successfully uploaded a photo!')
+            return render_template('images/new.html')
+        else:
+            flash('An error occurred. Try again')
+            return render_template('images/new.html')
+    else:
+        return redirect('/')

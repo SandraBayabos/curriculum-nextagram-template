@@ -43,7 +43,8 @@ def upload_file():
         if update_user_image.execute():
 
             flash('Successfully uploaded image!')
-            return redirect(url_for('home'))
+            # return redirect(url_for('home'))
+            return render_template('images/new.html')
         else:
             flash(
                 'An error occurred. Try again.')

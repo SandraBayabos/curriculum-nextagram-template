@@ -3,7 +3,7 @@ import os
 from app import app
 from flask import Blueprint, Flask, render_template, request, redirect, flash, url_for
 from flask_login import current_user, login_required
-from models.user import User
+from models.user import User, hybrid_property
 from werkzeug import secure_filename
 from config import S3_BUCKET
 
@@ -31,8 +31,33 @@ def upload_file():
     if file and allowed_file(file.filename):
         file.filename = secure_filename(file.filename)
         output = upload_file_to_s3(file, S3_BUCKET)
-        # return str(output)
-        flash('Successfully uploaded image!')
-        return redirect(url_for('home'))
+
+        update_user_image = User.update(
+            user_profile_image=file.filename
+        ).where(User.id == current_user.id)
+
+        # return str(file.filename)#
+
+        #save image to the database#
+
+        if update_user_image.execute():
+
+            flash('Successfully uploaded image!')
+            # return redirect(url_for('home'))
+            return render_template('images/new.html')
+        else:
+            flash(
+                'An error occurred. Try again.')
+            return render_template('images/new.html')
     else:
         return redirect('/')
+
+
+"""
+Hybrid_property used in a class:-
+User.select().where(User.profile_image_url == '....')
+User.select().where(User.location == 'KL')
+
+Hybrid_property used in an instance:-
+user.profile_image_url
+"""

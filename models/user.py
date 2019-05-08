@@ -2,6 +2,8 @@ from models.base_model import BaseModel
 from flask_login import LoginManager, UserMixin
 import peewee as pw
 import re
+from playhouse.hybrid import hybrid_property
+from config import AWS_LINK
 
 
 class User(BaseModel, UserMixin):
@@ -57,7 +59,9 @@ class User(BaseModel, UserMixin):
     def get_id(self):
         return self.id
 
-    # @hybrid_property
-    # def profile_image_url(self):
-    #     # return image url
-    #     return f"https://amazon.com"self.profile_picture
+    @hybrid_property
+    def profile_image_url(self):
+        # to return image url
+        return f"{AWS_LINK}/{self.user_profile_image}"
+
+    # user.profile_image_url

@@ -5,6 +5,7 @@ from models.user import User
 from models.donation import Donation
 from instagram_web.util.braintree import generate_client_token
 from instagram_web.util.braintree import complete_transaction
+from instagram_web.util.sendgrid import send_email
 
 donations_blueprint = Blueprint(
     'donations', __name__, template_folder='templates')
@@ -26,6 +27,7 @@ def create(image_id):
     payment_nonce = request.form.get('payment_nonce')
     amount = request.form.get('donation_amount')
     image = Image.get_or_none(Image.id == image_id)
+    # email = Image.get_or_none(Image.user.email == email)
 
     if not image:
         flash('Unable to find image. Please try again.')
@@ -43,6 +45,10 @@ def create(image_id):
         flash('Something went wrong')
         return redirect(url_for('donations.new', image_id=image.id))
 
+    #SEND EMAIL#
+    send_email()
+
+    #SAVING DONATIONS TO THE DATABASE#
     new_donation = Donation(
         user_id=current_user.id,
         amount=amount,
@@ -55,5 +61,3 @@ def create(image_id):
 
     flash('Donation successful!')
     return redirect(url_for('users.show', username=image.user.username))
-
-    #SAVING DONATIONS TO THE DATABASE#

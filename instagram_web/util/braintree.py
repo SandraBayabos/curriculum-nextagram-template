@@ -15,11 +15,15 @@ def generate_client_token():
     return gateway.client_token.generate()
 
 
-def complete_transaction():
+def complete_transaction(nonce, amount):
     result = gateway.transaction.sale({
         "amount": amount,
         "payment_method_nonce": nonce,
         "options": {
-            "submit_for_settelement": True
+            "submit_for_settlement": True
         }
     })
+
+    if result.is_success:
+        return True
+    return False

@@ -3,8 +3,9 @@
 
 <h1 class ="text-center">Make a donation</h1>
 <form method="post" action="{{url_for
-('donations.new', image_id=image.id)}}">
+('donations.create', image_id=image.id)}}" id="donation_form">
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<input type = "hidden" name = "payment_nonce" id="payment_nonce">
 <div class="form-group">
 <label for="">Donation</label>
 <input type="text" class="form-control" name="donation_amount" placeholder="Enter amount">
@@ -20,12 +21,16 @@
     const form = document.querySelector('#donation_form')
 
     braintree.dropin.create({
-      authorization: 'CLIENT_TOKEN_FROM_SERVER',
+      authorization: "{{client_token}}",
       container: '#dropin-container'
     }, function (createErr, instance) {
       button.addEventListener('click', function () {
-        instance.requestPaymentMethod(function (err, payload) {
-          // Submit payload.nonce to your server
+        instance.requestPaymentMethod(function (err, payload) 
+        //PAYLOAD IS TO GET VERIFICATION OF PAYMENT METHOD I.E. THAT THE CARD DETAILS/EXPIRATION DATE ARE ACCEPTABLE
+        {
+          nonceContainer.value=payload.nonce
+          //TO SUBMIT TO BACKEND I.E. PAYMENT_NONCE
+          form.submit();
         });
       });
     });

@@ -1,0 +1,33 @@
+{% extends '_layout.html' %}
+{% block content %}
+
+<h1 class ="text-center">Make a donation</h1>
+<form method="post" action="{{url_for
+('donations.new', image_id=image.id)}}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<div class="form-group">
+<label for="">Donation</label>
+<input type="text" class="form-control" name="donation_amount" placeholder="Enter amount">
+</div>
+</form>
+
+<div id="dropin-container"></div>
+  <button id="submit-button">Request payment method</button>
+  <script>
+    const button = document.querySelector
+    ('#submit-button');
+    const nonceContainer = document.querySelector('#payment_nonce')
+    const form = document.querySelector('#donation_form')
+
+    braintree.dropin.create({
+      authorization: 'CLIENT_TOKEN_FROM_SERVER',
+      container: '#dropin-container'
+    }, function (createErr, instance) {
+      button.addEventListener('click', function () {
+        instance.requestPaymentMethod(function (err, payload) {
+          // Submit payload.nonce to your server
+        });
+      });
+    });
+  </script>
+{% endblock %}

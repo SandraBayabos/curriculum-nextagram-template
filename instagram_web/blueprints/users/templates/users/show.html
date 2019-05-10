@@ -1,14 +1,18 @@
 {% extends '_layout.html' %}
 {% block content %}
 
-<h1>{{user.username}}</h1>
-<img src="{{user.profile_image_url}}" height=250 width=250>
+<h1 class="text-center">{{user.username}}</h1>
+<img src="{{user.profile_image_url}}" height=250 width=250">
 <br></br>
 <hr>
 <section>
 <div>
 {% for image in user.images %}
 <img src="{{image.users_image_url}}"  height=400 width =400/>
+</div>
+<br>
+<div>
+<a href="{{url_for('donations.new', image_id=image.id)}}" class="btn btn-primary">Donate</a> 
 {% endfor %}
 </div>
 </section>

@@ -8,6 +8,7 @@ from instagram_web.blueprints.images.views import images_blueprint
 from instagram_web.blueprints.donations.views import donations_blueprint
 from flask_assets import Environment, Bundle
 from .util.assets import bundles
+from instagram.helpers.google_oauth import oauth
 
 assets = Environment(app)
 assets.register(bundles)
@@ -20,6 +21,9 @@ app.register_blueprint(donations_blueprint, url_prefix="/donations")
 #FLASK LOGIN FUNCTION#
 login_manager = LoginManager()
 login_manager.init_app(app)
+
+# GOOGLE OAUTH
+oauth.init_app(app)
 
 #user_loader used to reload the user object from hte user ID stored in the session#
 

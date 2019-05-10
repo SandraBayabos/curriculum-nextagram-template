@@ -27,7 +27,7 @@ def create(image_id):
     payment_nonce = request.form.get('payment_nonce')
     amount = request.form.get('donation_amount')
     image = Image.get_or_none(Image.id == image_id)
-    email = Image.get_or_none(Image.user.email == email)
+    email = image.user.email
 
     if not image:
         flash('Unable to find image. Please try again.')
@@ -46,7 +46,7 @@ def create(image_id):
         return redirect(url_for('donations.new', image_id=image.id))
 
     #SEND EMAIL#
-    send_email(email)
+    send_email()
 
     #SAVING DONATIONS TO THE DATABASE#
     new_donation = Donation(

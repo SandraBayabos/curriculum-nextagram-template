@@ -4,7 +4,7 @@ from sendgrid.helpers.mail import Mail
 from config import SENGRID_API_KEY
 
 
-def send_email():
+def send_email(email):
     message = Mail(
         from_email='sandraoverlord@nextagram.com',
         to_emails=email,

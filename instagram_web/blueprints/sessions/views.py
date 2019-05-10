@@ -56,7 +56,7 @@ def authorize():
 
         if not user:
             flash('No user registered with this account.')
-            return redirect(url_for('sessions.new'))
+            return redirect(url_for('sessions.show'))
 
     flash(f'Welcome back {user.username}')
     return redirect(url_for('users.edit', id=user.id))
@@ -67,4 +67,4 @@ def authorize():
 @sessions_blueprint.route('/google_login', methods=['GET'])
 def google_login():
     redirect_uri = url_for('sessions.authorize', _external=True)
-    return oauth.google.authorize_redirect()
+    return oauth.google.authorize_redirect(redirect_uri)

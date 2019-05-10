@@ -10,11 +10,11 @@ def send_email():
         to_emails='sandra.bayabos@gmail.com',
         subject='Congrats! Donation Received',
         html_content='You have received a donation!')
-    # try:
-    #     sg = SENGRID_API_KEY
-    #     response = sg.send(message)
-    #     print(response.status_code)
-    #     print(response.body)
-    #     print(response.headers)
-    # except Exception as e:
-    #     print(e.message)
+    try:
+        sg = SendGridAPIClient(SENGRID_API_KEY)
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+    except Exception as e:
+        print(e.message)

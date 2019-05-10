@@ -46,7 +46,7 @@ def create(image_id):
         return redirect(url_for('donations.new', image_id=image.id))
 
     #SEND EMAIL#
-    send_email()
+    send_email(email)
 
     #SAVING DONATIONS TO THE DATABASE#
     new_donation = Donation(

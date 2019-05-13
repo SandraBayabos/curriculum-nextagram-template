@@ -5,5 +5,17 @@
 {% block header %}
 {% endblock %}
 {% block content %}
-<h1>Homepage</h1>
+
+{% if not current_user.is_authenticated %}
+<h1>Welcome to Nextagram</h1>
+{% endif %}
+
+<div>
+<h1>Hello, {{current_user.username}}</h1>
+{% for fan in fans %}
+<ul>
+<li>{{fan.username}}</li>
+</ul>
+{% endfor %}
+</div>
 {% endblock %}

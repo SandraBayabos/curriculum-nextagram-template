@@ -8,10 +8,15 @@ from playhouse.hybrid import hybrid_property
 
 class FollowerFollowing(BaseModel):
     # would automatically create follower_following
-    fan = pw.ForeignKeyField(User, backref='idols', unique=True)
-    idol = pw.ForeignKeyField(User, backref='fans', unique=True)
+    fan = pw.ForeignKeyField(User, backref='idols')
+    idol = pw.ForeignKeyField(User, backref='fans')
     approved = pw.BooleanField(default=False)
 
     @hybrid_property
     def is_approved(self):
         return True if self.approved else False
+
+    '''Meta class sets properties for the class. Always end with a comma. Tuple within a tuple.'''
+
+    class Meta:
+        indexes = ((('fan', 'idol'), True),)

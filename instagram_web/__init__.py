@@ -9,6 +9,7 @@ from instagram_web.blueprints.donations.views import donations_blueprint
 from flask_assets import Environment, Bundle
 from .util.assets import bundles
 from instagram_web.util.google_oauth import oauth
+from instagram_web.blueprints.follows.views import follows_blueprint
 
 assets = Environment(app)
 assets.register(bundles)
@@ -17,6 +18,7 @@ app.register_blueprint(users_blueprint, url_prefix="/users")
 app.register_blueprint(sessions_blueprint, url_prefix="/sessions")
 app.register_blueprint(images_blueprint, url_prefix="/images")
 app.register_blueprint(donations_blueprint, url_prefix="/donations")
+app.register_blueprint(follows_blueprint, url_prefix="/follows")
 
 #FLASK LOGIN FUNCTION#
 login_manager = LoginManager()
@@ -26,12 +28,14 @@ login_manager.init_app(app)
 oauth.init_app(app)
 
 
-#user_loader used to reload the user object from hte user ID stored in the session#
+#user_loader used to reload the user object from the user ID stored in the session#
 
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.get_by_id(user_id)
+
+# error handlers
 
 
 @app.errorhandler(500)

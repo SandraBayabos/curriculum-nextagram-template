@@ -32,6 +32,7 @@ def sign_in():
         return render_template('sessions/new.html')
 
     # session['user_id'] = user.id
+    # remove session['user_id'] = user.id & insert login_user(user) from flask-login to sign in
     login_user(user)
     flash(f'Welcome back {user.username}. You are logged in.')
     return redirect(url_for('home'))
@@ -45,6 +46,7 @@ def logout():
     return redirect(url_for('home'))
 
 
+# Google OAuth
 @sessions_blueprint.route('/google_login/authorize', methods=['GET'])
 def authorize():
     token = oauth.google.authorize_access_token()

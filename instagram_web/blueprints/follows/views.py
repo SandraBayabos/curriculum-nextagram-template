@@ -21,7 +21,7 @@ def create(idol_id):
         idol_id=idol.id
     )
 
-    # check if user is private or not
+    # check if user is private or not. If user.private is False, then Follower.Following = True
 
     if not idol.is_private:
         new_follow.approved = True
@@ -31,6 +31,7 @@ def create(idol_id):
         flash('Unable to follow this user!')
         return redirect(url_for('users.show', username=idol.username))
 
+    # using hybrid property to change FollowerFollowing.approved to True
     if new_follow.is_approved:
         flash(f'You are now following {idol.username}')
         return redirect(url_for('users.show', username=idol.username))

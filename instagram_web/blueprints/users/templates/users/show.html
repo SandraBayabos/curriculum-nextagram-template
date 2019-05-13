@@ -10,7 +10,13 @@
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 <button type='submit' class='btn btn-primary'>Follow</button>
 </form>
+</div>
 
+<div>
+<ul>
+<li>Followers: {{user.fan | length }}</li>
+<li>Following: {{user.idol | length }}</li>
+</ul>
 </div>
 
 <br></br>

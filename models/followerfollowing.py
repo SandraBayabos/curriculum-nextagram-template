@@ -8,8 +8,8 @@ from playhouse.hybrid import hybrid_property
 
 class FollowerFollowing(BaseModel):
     # would automatically create follower_following
-    fan = pw.ForeignKeyField(User, backref='idols')
-    idol = pw.ForeignKeyField(User, backref='fans')
+    fan = pw.ForeignKeyField(User, backref='idols', unique=True)
+    idol = pw.ForeignKeyField(User, backref='fans', unique=True)
     approved = pw.BooleanField(default=False)
 
     @hybrid_property

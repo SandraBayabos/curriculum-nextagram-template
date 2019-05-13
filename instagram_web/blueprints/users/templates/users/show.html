@@ -6,6 +6,8 @@
 
 <div>
 
+
+
 <form action="{{url_for('follows.create', idol_id=user.id)}}" method="POST">
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 <button type='submit' class='btn btn-primary'>Follow</button>
@@ -13,9 +15,17 @@
 </div>
 
 <div>
+<form method ="post", action="{{url_for('follows.delete', idol_id=user.id)}}">
+<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+<button type="submit" value= "Delete" class="btn btn-danger">Unfollow</button>
+</form>
+</div>
+
+
+<div>
 <ul>
-<li>Followers: {{user.fan | length }}</li>
-<li>Following: {{user.idol | length }}</li>
+<li>Followers: {{user.fans | length }}</li>
+<li>Following: {{user.idols | length }}</li>
 </ul>
 </div>
 

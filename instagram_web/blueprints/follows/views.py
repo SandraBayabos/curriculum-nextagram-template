@@ -38,3 +38,13 @@ def create(idol_id):
 
     flash('Follow request sent! Please wait for approval!')
     return redirect(url_for('users.show', username=idol.username))
+
+
+@follows_blueprint.route('/<idol_id>/unfollow', methods=['POST'])
+def delete(idol_id):
+    follow = FollowerFollowing.get_or_none((FollowerFollowing.idol_id == idol_id) and (
+        FollowerFollowing.fan_id == current_user.id))
+
+    if follow.delete_instance():
+        flash(f'You have unfollowed {follow.idol.username}')
+        return redirect(url_for('users.show', username=follow.idol.username))

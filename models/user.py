@@ -12,6 +12,7 @@ class User(BaseModel, UserMixin):
     email = pw.CharField(unique=True, null=False)
     password = pw.CharField(null=False)
     user_profile_image = pw.CharField(null=True, default=None)
+    private = pw.BooleanField(default=False)
 
     def validate(self):
         duplicate_user = User.get_or_none(
@@ -63,3 +64,8 @@ class User(BaseModel, UserMixin):
     def profile_image_url(self):
         # to return image url
         return f"{AWS_LINK}/{self.user_profile_image}"
+
+    # to set a user to private or public
+    @hybrid_property
+    def is_private(self):
+        return True if self.private else False

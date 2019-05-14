@@ -10,12 +10,16 @@
 <h1>Welcome to Nextagram</h1>
 {% endif %}
 
+{% if current_user.is_authenticated %}
 <div>
 <h1>Hello, {{current_user.username}}</h1>
-{% for fan in fans %}
 <ul>
-<li>{{fan.username}}</li>
+{% for follow in current_user.idols %}
+{% for image in follow.idol.images %}
+<li><img src="{{image.users_image_url}}" height=250 width=250/> {{follow.idol.username}}</li>
 </ul>
 {% endfor %}
+{% endfor %}
 </div>
+
 {% endblock %}

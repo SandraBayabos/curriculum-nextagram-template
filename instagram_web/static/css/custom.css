@@ -27,6 +27,7 @@ body {
 
 #idolsBox{
   border: solid 1px #E5E5E5;
+  border-radius: 5px;
   background-color: white;
   max-width: 75%;
   margin: 0 auto
@@ -51,8 +52,4 @@ body {
 
 #homepageUsername{
   font-family:'Roboto', sans-serif;
-}
-
-#logo{
-  
 }

@@ -11,13 +11,20 @@
 {% endif %}
 
 {% if current_user.is_authenticated %}
-<div>
-<h1>Hello, {{current_user.username}}</h1>
-<ul>
+<div style="flex-direction: column;" id="homePageContent">
+<h3>Hello, {{current_user.username}}</h3>
+<h4>What's on your dash</h4>
+
 {% for follow in current_user.idols %}
 {% for image in follow.idol.images %}
-<li><img src="{{image.users_image_url}}" height=250 width=250/> {{follow.idol.username}}</li>
-</ul>
+
+<div id="idolsBox">
+<div id="namebar">
+<img id ="homepageProfilePic" src="{{follow.idol.profile_image_url}}"/>
+<p id="homepageUsername">{{follow.idol.username}}</p>
+</div>
+<img id ="idolLatestPic" src="{{image.users_image_url}}"/>
+</div>
 {% endfor %}
 {% endfor %}
 </div>

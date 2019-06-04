@@ -1,0 +1,58 @@
+body {
+  width: 80%;
+  margin: 0 auto;
+  background-color: #F9F9F9
+}
+
+#navbar{
+  background-color: #FFFFFF;
+  width: 100%
+}
+
+#homePageContent {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+
+#idolLatestPic{
+  max-width: 100%;
+}
+
+#navbarTitle{
+  font-family: 'Lobster', cursive;
+  padding-left: 20px
+}
+
+#idolsBox{
+  border: solid 1px #E5E5E5;
+  background-color: white;
+  max-width: 75%;
+  margin: 0 auto
+}
+
+#homepageProfilePic{
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  margin-left: 4px
+}
+
+#homepageUsername{
+  height: 20px;
+  padding-left: 4px
+}
+
+#namebar{
+  padding: 10px;
+  padding-left: 20px
+}
+
+#homepageUsername{
+  font-family:'Roboto', sans-serif;
+}
+
+#logo{
+  
+}

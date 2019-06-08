@@ -7,7 +7,7 @@
 {% block content %}
 
 {% if not current_user.is_authenticated %}
-<h1>Welcome to Nextagram</h1>
+<h1 id="welcomePage">Welcome to Sandygram</h1>
 {% endif %}
 
 {% if current_user.is_authenticated %}

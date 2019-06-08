@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, login_user
 from models.user import User
 from models.image import Image
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -36,7 +36,8 @@ def create():
 
     if newuser.save():
         flash(f'Welcome {user_name}')
-        return redirect(url_for('users.new'))
+        login_user(newuser)
+        return redirect(url_for('home'))
 
     else:
         flash(f'{user_name} is already taken. Pick another')

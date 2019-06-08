@@ -1,4 +1,5 @@
 {% extends "_layout.html" %}
+
 {% block title %}
   Homepage
 {% endblock %}
@@ -7,9 +8,9 @@
 {% block content %}
 
 {% if not current_user.is_authenticated %}
+<img id="bgPic" class="bg-pic" src="/static/images/leaves.jpg" />
 <h1 id="welcomePage">Welcome to Sandygram</h1>
 {% endif %}
-
 {% if current_user.is_authenticated %}
 <div style="flex-direction: column;" id="homePageContent">
 <h3>Hello, {{current_user.username}}</h3>

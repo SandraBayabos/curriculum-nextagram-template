@@ -76,7 +76,9 @@ body {
     position: absolute;
     top: 50%;
     width: 100%;
-    background-color: #E5E5E5
+    background-color: black;
+    border: dotted pink 2px;
+    color: azure
 }
 
 #bgPic{

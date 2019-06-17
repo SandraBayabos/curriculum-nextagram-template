@@ -9,12 +9,16 @@
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
   <div class="form-group">
     <label for="">Email</label>
+    <div class="inputBox">
     <input type="email" class="form-control" name="email"  placeholder="Enter email">
+    </div>
   </div>
 
   <div class="form-group">
     <label for="">Password</label>
+    <div class="inputBox">
     <input type="password" class="form-control" name="password" placeholder="Password">
+    </div>
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
@@ -23,7 +27,7 @@
   <a href="{{url_for('sessions.google_login')}}" class="btn btn-success">Log In With Google</a>
   <hr>
 
-  <p>Don't have an account? <a href="{{url_for('users.new')}}">Sign Up</p>
+  <p style="text-align: center">Don't have an account? <a id="signInSignUpLink" href="{{url_for('users.new')}}">Sign Up</p>
   </div>
 </form>
 </div>

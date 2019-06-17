@@ -90,30 +90,39 @@ body {
   text-align: center;
   font-family: 'Lobster', cursive;
   padding-top: 20px;
-  color: #FFFFFF
+  color: rgba(255, 255,255);
+  padding-bottom: 20px
 }
 
 #signInForm{
-  max-width: 45%;
+  max-width: 50vh;
   margin: 0 auto;
   padding-top: 20px;
-  color: #FFFFFF;
+  color: rgba(255, 255,255);
   font-family:'Roboto', sans-serif;
-
 }
 
 #signInBorder{
-  border: solid 1px black;
-  max-width: 45%;
+  border: 1px solid rgba(255, 255, 255, .5);
+  max-width: 65vh;
   margin: 0 auto;
   border-radius: 20px;
-  box-shadow: 5px 5px;
+  box-shadow: 5px 5px rgba(255, 255, 255, .5);
+}
+
+#signInSignUpLink{
+  color: rgba(255, 255,255);
+  font-family: 'Lobster', cursive;
 }
 
 .bg-img {
   height: 100vh;
   background-image: url('../images/signinpage.jpg');
   background-size: cover;
+}
+
+::placeholder{
+  opacity: 1;
 }
 
 

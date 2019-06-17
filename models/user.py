@@ -1,4 +1,5 @@
 from models.base_model import BaseModel
+from flask import url_for
 from flask_login import LoginManager, UserMixin
 import peewee as pw
 import re
@@ -63,7 +64,10 @@ class User(BaseModel, UserMixin):
     @hybrid_property
     def profile_image_url(self):
         # to return image url
-        return f"{AWS_LINK}/{self.user_profile_image}"
+        if self.user_profile_image:
+            return f"{AWS_LINK}/{self.user_profile_image}"
+        else:
+            return url_for('static', filename="images/profile.jpg")
 
     # to set a user to private or public
     @hybrid_property

@@ -1,6 +1,7 @@
 {% extends '_layout.html'%}
 {% block content%}
 
+<div class="bg-img">
 <h1 id="signInHeader">Sign In</h1>
 
 <form id="signInForm" method="post" action="{{url_for('sessions.sign_in')}}"> 
@@ -21,5 +22,6 @@
   <a href="{{url_for('sessions.google_login')}}" class="btn btn-success">Log In With Google</a>
   <hr>
 </form>
+</div>
 
 {% endblock %}

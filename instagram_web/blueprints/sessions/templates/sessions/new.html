@@ -4,10 +4,11 @@
 <div class="bg-img">
 <h1 id="signInHeader">Sign In</h1>
 
+<div id="signInBorder">
 <form id="signInForm" method="post" action="{{url_for('sessions.sign_in')}}"> 
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
   <div class="form-group">
-    <label for="">Email address</label>
+    <label for="">Email</label>
     <input type="email" class="form-control" name="email"  placeholder="Enter email">
   </div>
 
@@ -21,6 +22,9 @@
 
   <a href="{{url_for('sessions.google_login')}}" class="btn btn-success">Log In With Google</a>
   <hr>
+
+  <p>Don't have an account? <a href="{{url_for('users.new')}}">Sign Up</p>
+  </div>
 </form>
 </div>
 

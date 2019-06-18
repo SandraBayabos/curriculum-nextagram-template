@@ -8,8 +8,11 @@
 {% block content %}
 
 {% if not current_user.is_authenticated %}
-<img id="bgPic" class="bg-pic" src="/static/images/leaves.jpg" />
-<h1 id="welcomePage">Welcome to Sandygram</h1>
+<div class="homepageImage">
+<div class="typewriter">
+<h1 class="welcomePageText">Welcome to Sandygram</h1>
+</div>
+</div>
 {% endif %}
 {% if current_user.is_authenticated %}
 <div style="flex-direction: column;" id="homePageContent">

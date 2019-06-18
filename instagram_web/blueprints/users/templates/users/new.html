@@ -1,8 +1,10 @@
 {% extends '_layout.html'%}
 {% block content%}
-<h1>Sign Up</h1>
+<div class="signUpBg">
+<h1 id="signUpHeader">Sign Up</h1>
 
-<form method="post" action="{{url_for('users.create')}}"> 
+<div id="signInBorder">
+<form id="signUpForm" method="post" action="{{url_for('users.create')}}"> 
 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 <div class="form-group">
     <label for="">Username</label>
@@ -22,6 +24,11 @@
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
+  <hr>
+
+  <p style="text-align: center">Already have an account? <a id="signInSignUpLink" href="{{url_for('sessions.sign_in')}}">Sign In</p>
+  </div>
 </form>
+</div>
 
 {% endblock %}

@@ -126,4 +126,31 @@ body {
   border: none;
 }
 
+#signUpHeader{
+  text-align: center;
+  font-family: 'Lobster', cursive;
+  padding-top: 20px;
+  color: rgba(255, 255,255);
+  padding-bottom: 20px
+}
+
+.signUpBg{
+  height: 100vh;
+  background-image: url('../images/signuppage.jpg');
+  background-size: cover
+}
+
+#signUpForm{
+  max-width: 50vh;
+  margin: 0 auto;
+  padding-top: 20px;
+  color: rgba(255, 255,255);
+  font-family:'Roboto', sans-serif;
+  padding-bottom: 20px
+}
+
+#signUpForm .form-control{
+  background-color: rgba(255,255,255,0.1);
+  border: none;
+}
 

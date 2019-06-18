@@ -167,11 +167,12 @@ body {
   transform: translate(-50%, -50%);
   font-family: 'Lobster', cursive;
   overflow: hidden;
+  width: 100%;
   letter-spacing: 2px;
-  animation: typing 3s steps(25, end), blink .75s step-end 0;
+  animation: typing 3s steps(30, end), blink .85s step-end 2;
   white-space: nowrap;
   font-weight: 10;
-  border-right: 4px solid #CB7583;
+  border-right: 4px solid transparent;
   box-sizing: border-box;
   text-shadow: 2px 2px #CB7583
 }
@@ -182,5 +183,15 @@ body {
   }
   to { 
       width: 100% 
+  }
+}
+
+@keyframes blink {
+  from,
+  to {
+    border-color: transparent
+  }
+  50% {
+    border-color: #CB7583;
   }
 }

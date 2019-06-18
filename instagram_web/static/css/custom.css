@@ -107,8 +107,8 @@ body {
 
 .bg-img {
   height: 100vh;
-  background-image: url('../images/signinpage.jpg');
   background-size: cover;
+  background: linear-gradient(to top, rgb(198, 255, 221), rgb(251, 215, 134), rgb(247, 121, 125));
 }
 
 #signInForm .form-control {
@@ -127,8 +127,8 @@ body {
 
 .signUpBg{
   height: 100vh;
-  background-image: url('../images/signuppage.jpg');
-  background-size: cover
+  background-size: cover;
+  background: linear-gradient(rgb(211, 149, 155), rgb(191, 230, 186));
 }
 
 #signUpForm{

@@ -3,7 +3,7 @@
 
 <h1>List of Users</h1>
 
-{% for user in users %}
+{% for user in object_list %}
 <ul>
 <li><img src="{{user.profile_image_url}}" height=250 width=250/> {{user.username}}</li>
 </ul>
@@ -12,8 +12,8 @@
 {% if page > 1 %}
 <a class="previous" href="./?page={{ page - 1 }}">Previous</a>
 {% endif %}
-{% if pagination.get_pages() > page %}
-<a class="next" href="./?page{{ page + 1 }}">Next</a>
+{% if pagination.get_page() > page %}
+<a class="next" href="./?page={{ page + 1 }}">Next</a>
 {% endif %}
 
 {% endblock %}

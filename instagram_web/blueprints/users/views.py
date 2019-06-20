@@ -49,13 +49,17 @@ def create():
 
 @users_blueprint.route('/index', methods=["GET"])
 def index():
-    return render_template('index.html',
-                           users=User.select())
+    users = User.select()
+    # return render_template('index.html',
+    #                        users=User.select())
 
     #####Pagination#######
+    return object_list(
+        'index.html',
+        users,
+        paginate_by=3)
 
-
-#####USER PROFILE PAGE#####
+    #####USER PROFILE PAGE#####
 
 
 @users_blueprint.route('/show/<username>', methods=["GET"])

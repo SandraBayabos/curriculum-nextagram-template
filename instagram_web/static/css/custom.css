@@ -195,3 +195,12 @@ body {
     border-color: #CB7583;
   }
 }
+
+.profilePageImage{
+  margin: 0 auto
+}
+
+#userImages{
+  align-content: center;
+  margin: 0 auto
+}

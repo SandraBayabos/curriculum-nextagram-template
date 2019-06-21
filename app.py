@@ -17,6 +17,14 @@ else:
     app.config.from_object("config.DevelopmentConfig")
 
 
+# def object_list(template_name, qr, var_name='object_list', **kwargs):
+#     kwargs.update(
+#         page=int(request.args.get('page', 1)),
+#         pages=qr.count() / 20 + 1)
+#     kwargs[var_name] = qr.paginate(kwargs['page'])
+#     return render_template(template_name, **kwargs)
+
+
 @app.before_request
 def before_request():
     db.connect()

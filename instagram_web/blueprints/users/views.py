@@ -47,7 +47,7 @@ def create():
 #####PAGE FOR LIST OF USERS#####
 
 
-@users_blueprint.route('/index', methods=["GET"])
+@users_blueprint.route('/', methods=["GET"])
 def index():
     # return render_template('index.html',
     #                        users=User.select())
@@ -57,7 +57,8 @@ def index():
     return object_list(
         'index.html',
         users,
-        paginate_by=3)
+        paginate_by=3,
+        context_variable='users')
 
 
 #####USER PROFILE PAGE#####

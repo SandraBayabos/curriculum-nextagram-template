@@ -17,7 +17,7 @@
     <a href="./?{{ request.args|clean_querystring('page', page=pagination.get_page() - 1) }}">&laquo; Previous {{ pagination.get_page() - 1 }} / {{ pagination.get_page_count() }}</a>
     </li>
   {% else %}
-    <li class="previous disabled">
+    <li style="display: none" class="previous disabled">
     <a href="#">&laquo; Previous</a>
     </li>
   {% endif %}

@@ -9,28 +9,42 @@
 </ul>
 {% endfor %}
 
-<!--Pagination-->
+<!-- Pagination with just Next & Previous button-->
 {% if pagination.get_page_count() > 1 %}
-<ul class="pager">
+{% if page > 1 %}
+<button class="previous">
+  <a href="./?page={{ page - 1 }}">Previous</a>
+  </button>
+{% endif %}
+{% if pagination.get_page_count() > pagination.get_page() %}
+<button class="next">
+<a href="./?page={{ page + 1 }}">Next</a>
+</button>
+{% endif %} 
+{% endif %}
+
+<!--Pagination with Next & Previous button and indicates page number out of total page number -->
+{% if pagination.get_page_count() > 1 %}
+<div class="pager">
   {% if pagination.get_page() > 1 %}
-    <li class="previous">
+    <button class="previous">
     <a href="./?{{ request.args|clean_querystring('page', page=pagination.get_page() - 1) }}">&laquo; Previous {{ pagination.get_page() - 1 }} / {{ pagination.get_page_count() }}</a>
-    </li>
+    </button>
   {% else %}
-    <li style="display: none" class="previous disabled">
+    <button style="display: none" class="previous disabled">
     <a href="#">&laquo; Previous</a>
-    </li>
+    </button>
   {% endif %}
 
   {% if pagination.get_page_count() > pagination.get_page() %}
-    <li class="next">
+    <button class="next">
     <a href="./?{{ request.args|clean_querystring('page', page=pagination.get_page() + 1) }}">Next {{ pagination.get_page() + 1 }} / {{ pagination.get_page_count() }} &raquo;</a>
-    </li>
+    </button>
   {% else %}
-    <li style="display: none" class="next disabled">
-    <a href="#">Next &raquo;</a></li>
+    <button style="display: none" class="next disabled">
+    <a href="#">Next &raquo;</a></button>
   {% endif %}
-</ul>
+</div>
 {% endif %}
 
 {% endblock %}

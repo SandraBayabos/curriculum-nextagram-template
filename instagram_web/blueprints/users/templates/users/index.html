@@ -6,7 +6,7 @@
 <h1 class="text-center">List of Users</h1>
 {% for user in users %}
 <div class="indexUsers">
-<div>
+<div class="indexUser">
 <div>{{user.username}}</div>
 <img src="{{user.profile_image_url}}" height=250 width=250/> </div>
 </div>
@@ -32,7 +32,7 @@
 
 <!--Pagination with Next & Previous button and indicates page number out of total page number -->
 {% if pagination.get_page_count() > 1 %}
-<div class="pager text-center">
+<div class="pager-two text-center">
   {% if pagination.get_page() > 1 %}
     <button class="previous">
     <a href="./?{{ request.args|clean_querystring('page', page=pagination.get_page() - 1) }}">&laquo; Previous {{ pagination.get_page() - 1 }} / {{ pagination.get_page_count() }}</a>
@@ -54,8 +54,31 @@
 </div>
 {% endif %}
 </div>
+<br>
 
 <!--Pagination with page numbers -->
 
+
+{% if pagination.get_page_count() > 1 %}
+<div class="pager-one text-center">
+{% if page > 1 %}
+  <button><a href="./?page={{ page - 1 }}">&laquo; </a></button>
+<button class="previous">
+  <a href="./?page={{ page - 1 }}">{{pagination.get_page() -1 }}</a>
+  </button>
+{% endif %}
+
+{% if pagination.get_page_count() > pagination.get_page() %}
+<button class="next">
+<a href="./?page={{ page + 1 }}">{{pagination.get_page() + 1}}</a>
+</button>
+<button><a href="./?page={{ page + 1 }}">&raquo;</a></button>
+
+{% endif %} 
+</div>
+{% endif %}
+
+
+</br>
 
 {% endblock %}

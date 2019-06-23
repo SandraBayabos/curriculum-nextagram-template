@@ -18,13 +18,6 @@ else:
     app.config.from_object("config.DevelopmentConfig")
 
 
-# def object_list(template_name, qr, var_name='object_list', **kwargs):
-#     kwargs.update(
-#         page=int(request.args.get('page', 1)),
-#         pages=qr.count() / 20 + 1)
-#     kwargs[var_name] = qr.paginate(kwargs['page'])
-#     return render_template(template_name, **kwargs)
-
 @app.template_filter('clean_querystring')
 def clean_querystring(request_args, *keys_to_remove, **new_values):
     # We'll use this template filter in the pagination include. This filter

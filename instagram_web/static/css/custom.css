@@ -205,13 +205,23 @@ body {
   margin: 0 auto
 }
 
-.pager{
+.pager-two{
   align-items: center;
   align-content: center;
 }
 
 .indexPage{
+  padding-top: 20px;
+  padding-bottom: 20px;
   margin: 0 auto;
   text-align: center;
   display: block
+}
+
+.indexUsers{
+  padding: 10px;
+}
+
+.indexUser{
+  border: solid 2px black
 }

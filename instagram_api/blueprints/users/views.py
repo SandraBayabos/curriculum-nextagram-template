@@ -10,6 +10,7 @@ users_api_blueprint = Blueprint('users_api',
 @users_api_blueprint.route('/', methods=['GET'])
 def index():
     return "USERS API"
+    pass
 
 
 @users_api_blueprint.route('/<username>', methods=['GET'])

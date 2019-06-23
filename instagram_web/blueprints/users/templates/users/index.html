@@ -6,7 +6,9 @@
 <h1 class="text-center">List of Users</h1>
 {% for user in users %}
 <div class="indexUsers">
-<div><img src="{{user.profile_image_url}}" height=250 width=250/> {{user.username}}</div>
+<div>
+<div>{{user.username}}</div>
+<img src="{{user.profile_image_url}}" height=250 width=250/> </div>
 </div>
 {% endfor %}
 <br/>

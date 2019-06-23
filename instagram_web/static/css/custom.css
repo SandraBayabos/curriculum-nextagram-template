@@ -204,3 +204,9 @@ body {
   align-content: center;
   margin: 0 auto
 }
+
+.pager{
+  align-items: center;
+  align-content: center;
+  display: inline
+}

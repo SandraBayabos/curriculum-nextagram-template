@@ -31,7 +31,7 @@
 </br>
 
 <!--Pagination with Next & Previous button and indicates page number out of total page number -->
-{% if pagination.get_page_count() > 1 %}
+<!--{% if pagination.get_page_count() > 1 %}
 <div class="pager-two text-center">
   {% if pagination.get_page() > 1 %}
     <button class="previous">
@@ -53,10 +53,11 @@
   {% endif %}
 </div>
 {% endif %}
-</div>
+</div>-->
 
 <!--Pagination with page numbers -->
 
+{% for page in range(pagination.get_page_count()) %}
 <div class="pager-one text-center">
 {% if page > 1 %}
   <button><a href="./?page={{ page - 1 }}">&laquo; </a></button>
@@ -73,6 +74,8 @@
 {% endif %} 
 
 </div>
+
+{% endfor%}
 
 <br>
 

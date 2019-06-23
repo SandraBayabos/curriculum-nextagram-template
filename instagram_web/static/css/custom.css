@@ -208,5 +208,10 @@ body {
 .pager{
   align-items: center;
   align-content: center;
-  display: inline
+}
+
+.indexPage{
+  margin: 0 auto;
+  text-align: center;
+  display: block
 }

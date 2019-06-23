@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from flask_login import current_user, login_required, login_user
-from playhouse.flask_utils import object_list
+from playhouse.flask_utils import object_list, get_object_or_404
 from models.user import User
 from models.image import Image
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -68,11 +68,19 @@ def index():
 @users_blueprint.route('/show/<username>', methods=["GET"])
 def show(username):
     user = User.get_or_none(User.username == username)
+    # user = get_object_or_404(User, User.username == username)
+
     if not user:
         flash('There is no one with that username. Check spelling.')
         return redirect(url_for('home'))
     else:
         return render_template('show.html', user=user)
+        # return object_list(
+        #     'show.html'
+        #     paginate_by=3,
+        #     user=user,
+        #     context_variable='user'
+        # )
 
 
 @users_blueprint.route('/<id>/edit', methods=['GET'])

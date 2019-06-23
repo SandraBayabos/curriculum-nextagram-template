@@ -1,5 +1,7 @@
 from app import app
 from flask import Flask, render_template
+from flask_login import current_user
+from playhouse.flask_utils import object_list, get_object_or_404
 from flask_login import LoginManager
 from models.user import User
 from instagram_web.blueprints.users.views import users_blueprint

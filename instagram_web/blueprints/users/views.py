@@ -57,7 +57,7 @@ def index():
     return object_list(
         'index.html',
         users,
-        paginate_by=10,
+        paginate_by=3,
         context_variable='users')
 
 

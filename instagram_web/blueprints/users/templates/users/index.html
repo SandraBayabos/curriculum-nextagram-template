@@ -54,12 +54,9 @@
 </div>
 {% endif %}
 </div>
-<br>
 
 <!--Pagination with page numbers -->
 
-
-{% if pagination.get_page_count() > 1 %}
 <div class="pager-one text-center">
 {% if page > 1 %}
   <button><a href="./?page={{ page - 1 }}">&laquo; </a></button>
@@ -73,10 +70,10 @@
 <a href="./?page={{ page + 1 }}">{{pagination.get_page() + 1}}</a>
 </button>
 <button><a href="./?page={{ page + 1 }}">&raquo;</a></button>
-
 {% endif %} 
+
 </div>
-{% endif %}
+
 
 
 </br>

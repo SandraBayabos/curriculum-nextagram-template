@@ -52,4 +52,9 @@ def page_not_found(e):
 
 @app.route("/")
 def home():
+    # users = User.select(User.id == current_user.id)
     return render_template('home.html')
+
+    # return object_list
+    # ('home.html',
+    #  users)

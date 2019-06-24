@@ -225,3 +225,20 @@ body {
 .indexUser{
   border: solid 2px black
 }
+
+#pg-btns{
+  border: none;
+  background: black;
+  width: 45px;
+  height: 45px;
+  font-size: 30px;
+}
+
+#pg-btns-disabled{
+  border: none;
+  width: 45px;
+  height: 45px;
+  background: rgb(97, 96, 96);
+  font-size: 30px;
+  color: black
+}

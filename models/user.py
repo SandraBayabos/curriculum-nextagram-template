@@ -12,7 +12,7 @@ class User(BaseModel, UserMixin):
     username = pw.CharField(unique=True, null=False)
     email = pw.CharField(unique=True, null=False)
     password = pw.CharField(null=False)
-    user_profile_image = pw.CharField(null=True, default=None)
+    user_profile_image = pw.CharField(null=True)
     private = pw.BooleanField(default=False)
 
     def validate(self):

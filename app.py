@@ -3,7 +3,7 @@ import config
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
 from models.base_model import db
-import urllib.parse
+# import urllib.parse
 
 web_dir = os.path.join(os.path.dirname(
     os.path.abspath(__file__)), 'instagram_web')
@@ -18,18 +18,18 @@ else:
     app.config.from_object("config.DevelopmentConfig")
 
 
-@app.template_filter('clean_querystring')
-def clean_querystring(request_args, *keys_to_remove, **new_values):
-    # We'll use this template filter in the pagination include. This filter
-    # will take the current URL and allow us to preserve the arguments in the
-    # querystring while replacing any that we need to overwrite. For instance
-    # if your URL is /?q=search+query&page=2 and we want to preserve the search
-    # term but make a link to page 3, this filter will allow us to do that.
-    querystring = dict((key, value) for key, value in request_args.items())
-    for key in keys_to_remove:
-        querystring.pop(key, None)
-    querystring.update(new_values)
-    return urllib.parse.urlencode(querystring)
+# @app.template_filter('clean_querystring')
+# def clean_querystring(request_args, *keys_to_remove, **new_values):
+#     # We'll use this template filter in the pagination include. This filter
+#     # will take the current URL and allow us to preserve the arguments in the
+#     # querystring while replacing any that we need to overwrite. For instance
+#     # if your URL is /?q=search+query&page=2 and we want to preserve the search
+#     # term but make a link to page 3, this filter will allow us to do that.
+#     querystring = dict((key, value) for key, value in request_args.items())
+#     for key in keys_to_remove:
+#         querystring.pop(key, None)
+#     querystring.update(new_values)
+#     return urllib.parse.urlencode(querystring)
 
 
 @app.before_request

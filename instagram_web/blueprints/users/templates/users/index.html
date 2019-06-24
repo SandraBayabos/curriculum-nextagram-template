@@ -17,12 +17,12 @@
 {% if pagination.get_page_count() > 1 %}
 <div class="pager-one text-center">
 {% if page > 1 %}
-<button class="previous">
+<button id="pagination-btns" class="previous">
   <a href="./?page={{ page - 1 }}">Previous</a>
   </button>
 {% endif %}
 {% if pagination.get_page_count() > pagination.get_page() %}
-<button class="next">
+<button id="pagination-btns" class="next">
 <a href="./?page={{ page + 1 }}">Next</a>
 </button>
 {% endif %} 
@@ -34,21 +34,21 @@
 {% if pagination.get_page_count() > 1 %}
 <div class="pager-two text-center">
   {% if pagination.get_page() > 1 %}
-    <button class="previous">
-    <a href="./?{{ request.args|clean_querystring('page', page=pagination.get_page() - 1) }}">&laquo; Previous {{ pagination.get_page() - 1 }} / {{ pagination.get_page_count() }}</a>
+    <button id="pagination-btn2" class="previous">
+    <a href="./?page={{ page - 1 }}">&laquo; Previous {{ pagination.get_page() - 1 }} / {{ pagination.get_page_count() }}</a>
     </button>
   {% else %}
-    <button style="display: none" class="previous disabled">
+    <button id="pagination-btn2" style="display: none" class="previous disabled">
     <a href="#">&laquo; Previous</a>
     </button>
   {% endif %}
 
   {% if pagination.get_page_count() > pagination.get_page() %}
-    <button class="next">
-    <a href="./?{{ request.args|clean_querystring('page', page=pagination.get_page() + 1) }}">Next {{ pagination.get_page() + 1 }} / {{ pagination.get_page_count() }} &raquo;</a>
+    <button id="pagination-btn2" class="next">
+    <a href="./?page={{ page + 1 }}">Next {{ pagination.get_page() + 1 }} / {{ pagination.get_page_count() }} &raquo;</a>
     </button>
   {% else %}
-    <button style="display: none" class="next disabled">
+    <button id="pagination-btn2" style="display: none" class="next disabled">
     <a href="#">Next &raquo;</a></button>
   {% endif %}
 </div>
